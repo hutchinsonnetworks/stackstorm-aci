@@ -1,0 +1,14 @@
+---
+class_name: "TenantSensor"
+entry_point: "tenant_sensor.py"
+descrption: "Tenant Sensor - Detects Updates & Deletions to ACI Tenants"
+poll_interval: 5
+trigger_types:
+  - name: "tenant_updated"
+    description: "Tenant was updated (including creations)"
+    payload_schema:
+      type: "object"
+  - name: "tenant_deleted"
+    description: "Tenant was deleted"
+    payload_schema:
+      type: "object"

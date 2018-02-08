@@ -1,0 +1,14 @@
+---
+ref: aci
+name: ACI
+description: Cisco ACI ST2 Integration
+keywords:
+  - cisco
+  - aci
+  - networking
+version: 0.1.0
+author: Hutchinson Networks
+email: fabrix-team@hutchinsonnetworks.com
+contributors:
+  - Neil Baillie <neilbaillie@hutchinsonnetworks.com>
+  - Harry Reeder <harryreeder@hutchinsonnetworks.com>

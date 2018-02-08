@@ -1,0 +1,46 @@
+---
+username:
+  type: "string"
+  description: "Global username for ACI"
+  required: false
+password:
+  type: "string"
+  description: "Global password for ACI"
+  secret: true
+  required: false
+verify_ssl:
+  type: "boolean"
+  description: "Verify SSL Certificates"
+  required: false
+  default: true
+clusters:
+  description: APIC Clusters
+  type: "array"
+  required: true
+  items:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        description: "Cluster Name"
+        required: true
+      username:
+        type: "string"
+        description: "Username for Cluster (overrides global username)"
+        required: false
+      password:
+        type: "string"
+        secret: true
+        description: "Password for Cluster (overrides global password)"
+        required: false
+      verify_ssl:
+        type: "boolean"
+        description: "Verify SSL Certificates"
+        required: false
+        default: true
+      apics:
+        type: "array"
+        description: "Root URLs for the APICs in the cluster"
+        required: true
+        items:
+          type: "string"
