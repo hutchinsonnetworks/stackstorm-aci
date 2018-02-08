@@ -32,6 +32,9 @@ class TenantSensor(ACISensor):
                     }
                 )
 
+    def cleanup(self):
+        pass
+
     def add_trigger(self, trigger):
         pass
 
