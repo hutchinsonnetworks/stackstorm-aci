@@ -31,3 +31,12 @@ class TenantSensor(ACISensor):
                         "description": tenant.descr
                     }
                 )
+
+    def add_trigger(self, trigger):
+        pass
+
+    def update_trigger(self, trigger):
+        pass
+
+    def remove_trigger(self, trigger):
+        pass
