@@ -19,3 +19,12 @@ class ACISensor(PollingSensor):
                 cluster.get('password', config.get('password'))
             )
             self.aci_sessions[name].login()
+
+    def add_trigger(self, trigger):
+        pass
+
+    def update_trigger(self, trigger):
+        pass
+
+    def remove_trigger(self, trigger):
+        pass
