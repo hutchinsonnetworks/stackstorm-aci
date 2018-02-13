@@ -1,0 +1,6 @@
+---
+name: "tenant_create"
+runner_type: "python-script"
+description: "Create a Tenant in ACI"
+enabled: true
+entry_point: "tenant_create.py"
