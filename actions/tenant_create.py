@@ -1,5 +1,5 @@
 from acitoolkit import acitoolkit as aci
-from st2reactor.sensor.base import Action
+from st2common.runners.base_action import Action
 
 
 class TenantCreate(Action):
