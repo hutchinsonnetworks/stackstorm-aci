@@ -37,6 +37,16 @@ class IPEndpointSensor(ACISensor):
                     }
                 )
 
+                self._logger.info("Dispatching trigger {}:".format(trigger))
+                self._logger.info({
+                    "cluster": cluster_name,
+                    "ip": endpoint.ip,
+                    "mac": endpoint.mac,
+                    "dn": endpoint.dn,
+                    "epg": endpoint.get_parent().name,
+                    "tenant": endpoint.get_parent().get_parent().get_parent().name
+                })
+
     def cleanup(self):
         pass
 
