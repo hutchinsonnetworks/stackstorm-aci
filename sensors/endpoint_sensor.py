@@ -25,6 +25,12 @@ class EndpointSensor(ACISensor):
                 else:
                     trigger += "endpoint_updated"
 
+                self._logger.info("IP: {}".format(endpoint.ip))
+                self._logger.info("MAC: {}".format(endpoint.mac))
+                self._logger.info("DN: {}".format(endpoint.dn))
+                self._logger.info("EPG: {}".format(endpoint.get_parent().name)
+                self._logger.info("Tenant: {}".format(endpoint.get_parent().get_parent().get_parent().name))
+
                 self.sensor_service.dispatch(
                     trigger=trigger,
                     payload={
