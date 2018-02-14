@@ -15,6 +15,7 @@ class TenantCreate(Action):
             self.logger.info("Setting Description: {}".format(description))
             tenant.desc = description
         
+        self.logger.info(tenant.__dict__)
         self.logger.info("Pushing JSON to APIC: {}".format(tenant.get_json()))
-        tenant.push_to_apic(session)
+        # tenant.push_to_apic(session)
         return True
