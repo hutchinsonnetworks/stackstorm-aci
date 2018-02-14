@@ -1,0 +1,14 @@
+---
+class_name: "IPEndpointSensor"
+entry_point: "ipendpoint_sensor.py"
+descrption: "ipendpoint Sensor - Detects Updates & Deletions to ACI IP Endpoints"
+poll_interval: 5
+trigger_types:
+  - name: "ipendpoint_updated"
+    description: "ipendpoint was updated (including creations)"
+    payload_schema:
+      type: "object"
+  - name: "ipendpoint_deleted"
+    description: "ipendpoint was deleted"
+    payload_schema:
+      type: "object"
