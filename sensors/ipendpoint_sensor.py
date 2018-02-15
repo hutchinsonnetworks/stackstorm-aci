@@ -24,6 +24,13 @@ class IPEndpointSensor(ACISensor):
                     trigger += "ipendpoint_deleted"
                 else:
                     trigger += "ipendpoint_updated"
+                
+                epg = endpoint.get_parent()
+                bridge_domain = epg.get_bd()
+                vrf = bridge_domain.get_context()
+
+                self._logger.info("BD: {}".format(bridge_domain.name))
+                self._logger.info("VRF: {}".format(vrf.name))
 
                 self.sensor_service.dispatch(
                     trigger=trigger,
@@ -32,8 +39,8 @@ class IPEndpointSensor(ACISensor):
                         "ip": endpoint.ip,
                         "mac": endpoint.mac,
                         "dn": endpoint.dn,
-                        "epg": endpoint.get_parent().name,
-                        "tenant": endpoint.get_parent().get_parent().get_parent().name
+                        "epg": epg.name,
+                        "tenant": epg.get_parent().get_parent().name
                     }
                 )
 
@@ -43,8 +50,8 @@ class IPEndpointSensor(ACISensor):
                     "ip": endpoint.ip,
                     "mac": endpoint.mac,
                     "dn": endpoint.dn,
-                    "epg": endpoint.get_parent().name,
-                    "tenant": endpoint.get_parent().get_parent().get_parent().name
+                    "epg": epg.name,
+                    "tenant": epg.get_parent().get_parent().name
                 })
 
     def cleanup(self):
