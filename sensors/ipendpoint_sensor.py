@@ -25,6 +25,7 @@ class IPEndpointSensor(ACISensor):
                 else:
                     trigger += "ipendpoint_updated"
                 
+                epg = endpoint.get_parent()
 
                 payload = {
                     "cluster": cluster_name,
@@ -34,9 +35,6 @@ class IPEndpointSensor(ACISensor):
                     "epg": epg.name,
                     "tenant": epg.get_parent().get_parent().name
                 }
-
-
-                epg = endpoint.get_parent()
 
                 if isinstance(epg, aci.EPG):
                     bridge_domain = epg.get_bd()
