@@ -25,34 +25,30 @@ class IPEndpointSensor(ACISensor):
                 else:
                     trigger += "ipendpoint_updated"
                 
-                epg = endpoint.get_parent()
-                bridge_domain = epg.get_bd()
-                vrf = bridge_domain.get_context()
 
-                self._logger.info("BD: {}".format(bridge_domain.name))
-                self._logger.info("VRF: {}".format(vrf.name))
-
-                self.sensor_service.dispatch(
-                    trigger=trigger,
-                    payload={
-                        "cluster": cluster_name,
-                        "ip": endpoint.ip,
-                        "mac": endpoint.mac,
-                        "dn": endpoint.dn,
-                        "epg": epg.name,
-                        "tenant": epg.get_parent().get_parent().name
-                    }
-                )
-
-                self._logger.info("Dispatching trigger {}:".format(trigger))
-                self._logger.info({
+                payload = {
                     "cluster": cluster_name,
                     "ip": endpoint.ip,
                     "mac": endpoint.mac,
                     "dn": endpoint.dn,
                     "epg": epg.name,
                     "tenant": epg.get_parent().get_parent().name
-                })
+                }
+
+
+                epg = endpoint.get_parent()
+
+                if isinstance(epg, aci.EPG):
+                    bridge_domain = epg.get_bd()
+                    vrf = bridge_domain.get_context()
+
+                    self._logger.info("BD: {}".format(bridge_domain.name))
+                    self._logger.info("VRF: {}".format(vrf.name))
+
+                self.sensor_service.dispatch(trigger=trigger, payload=payload)
+
+                self._logger.info("Dispatching trigger {}:".format(trigger))
+                self._logger.info(payload)
 
     def cleanup(self):
         pass
