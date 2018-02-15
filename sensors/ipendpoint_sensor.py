@@ -36,17 +36,17 @@ class IPEndpointSensor(ACISensor):
                     "tenant": epg.get_parent().get_parent().name
                 }
 
-                if isinstance(epg, aci.EPG):
-                    bridge_domain = epg.get_bd()
-                    vrf = bridge_domain.get_context()
+                self._logger.info("Dispatching trigger {}:".format(trigger))
+                self._logger.info(payload)
 
+                if isinstance(epg, aci.EPG) and epg.has_bd():
+                    bridge_domain = epg.get_bd()
                     self._logger.info("BD: {}".format(bridge_domain.name))
+
+                    vrf = bridge_domain.get_context()
                     self._logger.info("VRF: {}".format(vrf.name))
 
                 self.sensor_service.dispatch(trigger=trigger, payload=payload)
-
-                self._logger.info("Dispatching trigger {}:".format(trigger))
-                self._logger.info(payload)
 
     def cleanup(self):
         pass
