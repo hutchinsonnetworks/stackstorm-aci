@@ -11,12 +11,15 @@ class IPEndpointSensor(ACISensor):
 
         for session in self.aci_sessions.values():
             aci.IPEndpoint.subscribe(session, only_new=True)
-    
+
     def poll(self):
         super(IPEndpointSensor, self).poll()
         for cluster_name, session in self.aci_sessions.items():
             if aci.IPEndpoint.has_events(session):
-                endpoint = aci.IPEndpoint.get_event(session)
+                endpoint = aci.IPEndpoint.get_event(sess)
+                epg = endpoint.get_parent()
+                app_profile = epg.get_parent()
+                tenant = app_profile.get_parent()
 
                 trigger = "aci."
 
@@ -39,12 +42,17 @@ class IPEndpointSensor(ACISensor):
                 self._logger.info("Dispatching trigger {}:".format(trigger))
                 self._logger.info(payload)
 
-                if isinstance(epg, aci.EPG) and epg.has_bd():
-                    bridge_domain = epg.get_bd()
-                    self._logger.info("BD: {}".format(bridge_domain.name))
+                if isinstance(epg, aci.EPG):
+                    deep_tenant = aci.Tenant.get_deep(session, names=(tenant.name,), limit_to=["fvTenant", "fvBD", "fvAEPg", "fvCtx"])[0]
+                    searcher = aci.Search()
+                    searcher.name = epg.name
+                    deep_epg = filter(lambda epg: isinstance(epg, aci.EPG), deep_tenant.find(searcher))[0]
+                    bridge_domain = deep_epg.get_bd()
+                    if bridge_domain is not None:
+                        payload['bridge_domain'] = bridge_domain.name
 
-                    vrf = bridge_domain.get_context()
-                    self._logger.info("VRF: {}".format(vrf.name))
+                        vrf = bridge_domain.get_context()
+                        payload['vrf'] = vrf.name
 
                 self.sensor_service.dispatch(trigger=trigger, payload=payload)
 
