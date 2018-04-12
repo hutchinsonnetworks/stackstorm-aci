@@ -1,0 +1,27 @@
+---
+name: "l3o_node_profile_create"
+runner_type: "python-script"
+description: "Create a Node Profile on a Layer 3 Out in ACI"
+enabled: true
+entry_point: "l3o_node_profile_create.py"
+parameters:
+  cluster_name:
+    type: "string"
+    description: "Cluster Name where to create Node Profile for"
+    required: true
+    position: 0
+  tenant_name:
+    type: "string"
+    description: "Tenant Name to create this Node Profile for"
+    required: true
+    position: 1
+  l3o_name:
+    type: "string"
+    description: "Layer 3 Out Name to create this Node Profile for"
+    required: true
+    position: 2
+  name:
+    type: "string"
+    description: "Name of the new Node Proflie"
+    required: true
+    position: 3

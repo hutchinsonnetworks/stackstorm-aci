@@ -1,0 +1,32 @@
+---
+name: "l3o_create"
+runner_type: "python-script"
+description: "Create a Layer 3 Out in ACI"
+enabled: true
+entry_point: "l3o_create.py"
+parameters:
+  cluster_name:
+    type: "string"
+    description: "Cluster Name where to create this Layer 3 Out"
+    required: true
+    position: 0
+  tenant_name:
+    type: "string"
+    description: "Tenant Name to create this Layer 3 Out for"
+    required: true
+    position: 1
+  name:
+    type: "string"
+    description: "Name of the new Layer 3 Out"
+    required: true
+    position: 2
+  vrf_name:
+    type: "string"
+    description: "Name of the VRF for the new Layer 3 Out"
+    required: false
+    position: 3
+  l3_external_domain_name:
+    type: "string"
+    description: "Name of the l3 external domain for the new Layer 3 Out"
+    required: false
+    position: 4

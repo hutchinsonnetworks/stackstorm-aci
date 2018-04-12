@@ -1,4 +1,20 @@
 ---
+cobra:
+  type: "object"
+  properties:
+    download_location:
+      type: "string"
+      description: "Location of the Cobra Egg Files on a APIC"
+      required: true
+    eggs:
+      type: "object"
+      properties:
+        cobra:
+          description: "Egg File for Cobra Pack"
+          required: true
+        model:
+          description: "Egg File for Module Pack"
+          required: true
 username:
   type: "string"
   description: "Global username for ACI"
