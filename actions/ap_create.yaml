@@ -1,0 +1,19 @@
+---
+name: "ap_create"
+runner_type: "python-script"
+description: "Create an Application Profile in ACI"
+enabled: true
+entry_point: "ap_create.py"
+parameters:
+  cluster_name:
+    type: "string"
+    description: "Cluster Name where to create this Application Profile"
+    required: true
+  tenant_name:
+    type: "string"
+    description: "Tenant Name to create this Application Profile for"
+    required: true
+  name:
+    type: "string"
+    description: "Name of the new Application Profile"
+    required: true
