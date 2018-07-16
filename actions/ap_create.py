@@ -1,8 +1,9 @@
 from _base import AciAction
 import json
 
-class TenantCreate(AciAction):
-    def run(self, cluster_name, name, description=''):
+
+class ApCreate(AciAction):
+    def run(self, cluster_name, tenant_name, name):
         from cobra.internal.codec.jsoncodec import toJSONStr
 
         import cobra.mit.naming
@@ -13,16 +14,16 @@ class TenantCreate(AciAction):
         md = self._login(cluster_name)
 
         # the top level object on which operations will be made
-        topDn = cobra.mit.naming.Dn.fromString('uni/tn-' + name)
-        topParentDn = topDn.getParent()
+        topParentDn = cobra.mit.naming.Dn.fromString('uni/tn-' + tenant_name)
         topMo = md.lookupByDn(topParentDn)
 
         # build the request using cobra syntax
-        fvTenant = cobra.model.fv.Tenant(topMo, ownerKey='', name=name, descr=description, nameAlias='', ownerTag='')
+        fvAp = cobra.model.fv.Ap(topMo, ownerKey='', name=name,
+                                 descr='', nameAlias='', ownerTag='', prio='unspecified')
 
         # commit the generated code to APIC
         c = cobra.mit.request.ConfigRequest()
-        c.addMo(fvTenant)
+        c.addMo(topMo)
         md.commit(c)
 
         return json.loads(toJSONStr(topMo))

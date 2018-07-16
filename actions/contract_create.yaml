@@ -1,0 +1,19 @@
+---
+name: "contract_create"
+runner_type: "python-script"
+description: "Create a Contract in ACI"
+enabled: true
+entry_point: "contract_create.py"
+parameters:
+  cluster_name:
+    type: "string"
+    description: "Cluster Name where to create this Contract"
+    required: true
+  tenant_name:
+    type: "string"
+    description: "Tenant Name to create this Contract for"
+    required: true
+  name:
+    type: "string"
+    description: "Name of the new Contract"
+    required: true

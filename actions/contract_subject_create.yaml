@@ -1,0 +1,31 @@
+---
+name: "contract_subject_create"
+runner_type: "python-script"
+description: "Create a Contract Subject in ACI"
+enabled: true
+entry_point: "contract_subject_create.py"
+parameters:
+  cluster_name:
+    type: "string"
+    description: "Cluster Name where to create this Contract Subject"
+    required: true
+  tenant_name:
+    type: "string"
+    description: "Tenant Name to create this Contract Subject for"
+    required: true
+  contract_name:
+    type: "string"
+    description: "Contract Name to create this Contract Subject for"
+    required: true
+  name:
+    type: "string"
+    description: "Name of this Subject"
+    required: true
+  reverse_filter_ports:
+    type: "boolean"
+    description: "Reverse Filter Ports, True/False"
+    required: false
+  filter_name:
+    type: "string"
+    description: "Name of the Filter for the Subject"
+    required: false

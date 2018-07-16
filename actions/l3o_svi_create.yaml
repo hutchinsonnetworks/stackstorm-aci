@@ -1,0 +1,77 @@
+---
+name: "l3o_svi_create"
+runner_type: "python-script"
+description: "Create a SVI Path on a Layer 3 Out Interface Profile in ACI"
+enabled: true
+entry_point: "l3o_svi_create.py"
+parameters:
+  cluster_name:
+    type: "string"
+    description: "Cluster Name where to create this SVI"
+    required: true
+    position: 0
+  tenant_name:
+    type: "string"
+    description: "Tenant Name to create this SVI"
+    required: true
+    position: 1
+  l3o_name:
+    type: "string"
+    description: "Layer 3 Out Name to create this SVI"
+    required: true
+    position: 2
+  node_profile_name:
+    type: "string"
+    description: "Node Profile Name to create this SVI"
+    required: true
+    position: 3
+  interface_profile_name:
+    type: "string"
+    description: "Interface Profile Name to create this SVI"
+    required: true
+    position: 4
+  node_a:
+    type: "string"
+    description: "Leaf Node A for SVI"
+    required: true
+    position: 5
+  node_a_ip:
+    type: "string"
+    description: "Leaf Node A IP Address for SVI"
+    required: true
+    position: 6
+  node_b:
+    type: "string"
+    description: "Leaf Node B for SVI"
+    required: true
+    position: 7
+  node_b_ip:
+    type: "string"
+    description: "Leaf Node B IP Address for SVI"
+    required: true
+    position: 8
+  node_float_ip:
+    type: "string"
+    description: "Leaf Float IP Address for SVI"
+    required: true
+    position: 9
+  path_name:
+    type: "string"
+    description: "Name of logica Fabric Path"
+    required: true
+    position: 10
+  path_type:
+    type: "string"
+    description: "Type of Paths Logical Interface, p / pc / vpc"
+    required: true
+    position: 11
+  vlan_id:
+    type: "string"
+    description: "vlan id on the Logical Interface"
+    required: true
+    position: 12
+  mtu:
+    type: "string"
+    description: "MTU for Logical Interface"
+    required: false
+    position: 13

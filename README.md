@@ -4,6 +4,11 @@
 Example Configuration
 ```
 ---
+cobra:
+  download_location: "http://aci-cl01-apic01/cobra/_downloads/"
+  eggs:
+    cobra: "acicobra-x-py2.7.egg"
+    model: "acimodel-x-py2.7.egg"
 username: aciuser
 password: acipassword
 clusters:

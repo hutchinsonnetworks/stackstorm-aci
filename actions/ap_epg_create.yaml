@@ -1,0 +1,27 @@
+---
+name: "ap_epg_create"
+runner_type: "python-script"
+description: "Create an EPG in ACI"
+enabled: true
+entry_point: "ap_epg_create.py"
+parameters:
+  cluster_name:
+    type: "string"
+    description: "Cluster Name where to create this EPG"
+    required: true
+  tenant_name:
+    type: "string"
+    description: "Tenant Name to create this EPG for"
+    required: true
+  ap_name:
+    type: "string"
+    description: "Application Profile to create this EPG for"
+    required: true
+  name:
+    type: "string"
+    description: "Name of the new EPG"
+    required: true
+  bd_name:
+    type: "string"
+    description: "Name of BD for the EPG"
+    required: false

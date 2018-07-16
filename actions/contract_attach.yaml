@@ -1,0 +1,35 @@
+---
+name: "contract_attach"
+runner_type: "python-script"
+description: "Attach a Endpoint to a Contract"
+enabled: true
+entry_point: "contract_attach.py"
+parameters:
+  cluster_name:
+    type: "string"
+    description: "Cluster Name for this Contract"
+    required: true
+  tenant_name:
+    type: "string"
+    description: "Tenant Name for this Contract"
+    required: true
+  contract_name:
+    type: "string"
+    description: "Contract Name to attach"
+    required: true
+  parent_name:
+    type: "string"
+    description: "Name of the Parent of the Endpoint"
+    required: true
+  name:
+    type: "string"
+    description: "Name of the Attaching Endpoint"
+    required: true
+  type_of_endpoint:
+    type: "string"
+    description: "Type of the Endpoint, EPG or EN"
+    required: true
+  type_of_consumption:
+    type: "string"
+    description: "Type of Consumption, Consumer / ConsumerImport / Provider"
+    required: true

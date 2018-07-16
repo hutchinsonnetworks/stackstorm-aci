@@ -1,0 +1,32 @@
+---
+name: "l3o_interface_profile_create"
+runner_type: "python-script"
+description: "Create a Interface Profile on a Layer 3 Out in ACI"
+enabled: true
+entry_point: "l3o_interface_profile_create.py"
+parameters:
+  cluster_name:
+    type: "string"
+    description: "Cluster Name where to create this Infterface Profile for"
+    required: true
+    position: 0
+  tenant_name:
+    type: "string"
+    description: "Tenant Name to create this Infterface Profile for"
+    required: true
+    position: 1
+  l3o_name:
+    type: "string"
+    description: "Layer 3 Out Name to create this Infterface Profile for"
+    required: true
+    position: 2
+  node_profile_name:
+    type: "string"
+    description: "Node Profile Name to create this Infterface Profile for"
+    required: true
+    position: 3
+  name:
+    type: "string"
+    description: "Name of the Interface Proflie"
+    required: true
+    position: 4
